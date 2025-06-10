@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile Number Validation using JavaScript</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        table {
+            margin: 20px auto;
+        }
+        input {
+            padding: 8px;
+            font-size: 14px;
+        }
+        button {
+            padding: 8px 16px;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Mobile Number Validation using JavaScript</h1>
+
+    <form onsubmit="return validate()">
+        <table>
+            <tr>
+                <td><label for="inm">Enter Mobile Number</label></td>
+                <td><input id="inm" type="text" placeholder="Enter 10 Digit Mobile Num"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><span id="msg" class="error"></span></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <button type="submit">Validate</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <script>
+        function validate() {
+            var inm = document.getElementById("inm").value.trim();
+            var msg = document.getElementById("msg");
+            msg.textContent = "";
+
+            if (inm.length !== 10) {
+                msg.textContent = "Mobile number must be 10 digits.";
+                return false;
+            }
+
+            for (let i = 0; i < inm.length; i++) {
+                if (inm[i] < '0' || inm[i] > '9') {
+                    msg.textContent = "Mobile number should contain only digits.";
+                    return false;
+                }
+            }
+
+            alert("Mobile number is valid!");
+            return true;
+        }
+    </script>
+
+</body>
+</html>

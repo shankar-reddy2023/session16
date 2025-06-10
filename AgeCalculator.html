@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Age Calculator</title>
+  <style>
+    body {
+      background-color: #7b47f1;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+      color: white;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 40px;
+    }
+
+    .calculator-box {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+      display: inline-flex;
+      align-items: center;
+      padding: 15px;
+      margin-bottom: 30px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-right: 10px;
+      width: 150px;
+    }
+
+    button {
+      background-color: #7b47f1;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .result {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .box {
+      background: white;
+      color: black;
+      padding: 20px;
+      width: 100px;
+      border-radius: 10px;
+      box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .box h2 {
+      margin: 0;
+      font-size: 32px;
+    }
+
+    .box span {
+      font-size: 14px;
+      display: block;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>AGE CALCULATOR</h1>
+
+  <div class="calculator-box">
+    <input type="text" id="dob" placeholder="MM/DD/YYYY" />
+    <button onclick="calculateAge()">Calculator</button>
+  </div>
+
+  <div class="result">
+    <div class="box">
+      <h2 id="years">00</h2>
+      <span>YEAR</span>
+    </div>
+    <div class="box">
+      <h2 id="months">00</h2>
+      <span>MONTH</span>
+    </div>
+    <div class="box">
+      <h2 id="days">00</h2>
+      <span>DAY</span>
+    </div>
+  </div>
+
+  <script>
+    function calculateAge() {
+      const input = document.getElementById("dob").value.trim();
+
+      // Validate input format
+      const regex = /^(0?[1-9]|1[0-2])\/(0?[1-9]|[12]\d|3[01])\/\d{4}$/;
+      if (!regex.test(input)) {
+        alert("Please enter a valid date in MM/DD/YYYY format.");
+        return;
+      }
+
+      const [month, day, year] = input.split("/").map(num => parseInt(num, 10));
+      const birthDate = new Date(year, month - 1, day);
+      const today = new Date();
+
+      if (birthDate > today) {
+        alert("Date of birth cannot be in the future.");
+        return;
+      }
+
+      let years = today.getFullYear() - birthDate.getFullYear();
+      let months = today.getMonth() - birthDate.getMonth();
+      let days = today.getDate() - birthDate.getDate();
+
+      if (days < 0) {
+        months--;
+        const lastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+        days += lastMonth.getDate();
+      }
+
+      if (months < 0) {
+        years--;
+        months += 12;
+      }
+
+      document.getElementById("years").innerText = String(years).padStart(2, '0');
+      document.getElementById("months").innerText = String(months).padStart(2, '0');
+      document.getElementById("days").innerText = String(days).padStart(2, '0');
+    }
+  </script>
+
+</body>
+</html>

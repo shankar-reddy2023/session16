@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Prime Number Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fafafa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-box {
+      background: #fff;
+      padding: 30px;
+      width: 300px;
+      border: 1px solid #dbdbdb;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    .login-box h1 {
+      font-family: 'Brush Script MT', cursive;
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 12px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 10px 10px 10px 35px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    .input-group .icon {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      background-color: #0095f6;
+      color: white;
+      padding: 10px;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .options {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+    }
+
+    .options input {
+      margin-right: 5px;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 13px;
+      margin-top: 20px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #00376b;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-box">
+    <h1>Instagram</h1>
+    <form onsubmit="return validateForm()">
+      <div class="input-group">
+        <span class="icon">👤</span>
+        <input id="usnm" type="text" placeholder="Username">
+      </div>
+      <div class="input-group">
+        <span class="icon">🔒</span>
+        <input id="pass" type="password" placeholder="Password">
+      </div>
+      <button type="submit">Log in</button>
+      <div class="options">
+        <label><input type="checkbox">Remember me</label>
+        <a href="#">Forgot Password?</a>
+      </div>
+    </form>
+    <div class="footer">
+      Don't have an account? <a href="#">Sign up here.</a>
+    </div>
+  </div>
+
+  <script>
+    function validateForm() {
+      let username = document.getElementById("usnm").value.trim();
+      let password = document.getElementById("pass").value.trim();
+
+      if (username.length < 3) {
+        alert("Username must be at least 3 characters long.");
+        return false;
+      }
+
+      if (password.length < 6) {
+        alert("Password must be at least 6 characters long.");
+        return false;
+      }
+
+      alert("Login successful!");
+      return true;
+    }
+  </script>
+
+</body>
+</html>
